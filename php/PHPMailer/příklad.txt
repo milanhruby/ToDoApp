@@ -1,0 +1,18 @@
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require $mailer_path . 'php/PHPMailer/src/Exception.php';
+require $mailer_path . 'php/PHPMailer/src/PHPMailer.php';
+require $mailer_path . 'php/PHPMailer/src/SMTP.php';
+
+
+$email = new PHPMailer();
+$email->CharSet = 'UTF-8';  // !!!!
+$email->SetFrom($from, 'Směniště'); //Name is optional
+$email->AddAddress($to); // příjemce
+$email->AddAttachment("faktury/file.pdf",'Nové jméno souboru.pdf'); // cesta k odesílanému souboru a volitelný nový název souboru
+$email->isHTML(true); // !!!!
+$email->Subject = $subject;
+$email->Body = $message;
+
+$email->Send();

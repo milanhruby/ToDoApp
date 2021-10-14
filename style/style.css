@@ -1,0 +1,1525 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.spinner::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 11rem;
+  height: 11rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("../res/spinner.svg");
+}
+
+.myalert {
+  position: fixed;
+  text-align: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.myalert .text_element {
+  display: inline-block;
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: white;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 0px 4px grey;
+          box-shadow: 0px 0px 4px grey;
+  max-width: 90%;
+  text-align: center;
+}
+.myalert .text_element .ok_btn {
+  display: inline-block;
+  padding: 0.4rem 0.7rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  background: -webkit-gradient(linear, left top, right top, from(#f58e0e), to(red));
+  background: linear-gradient(to right, #f58e0e, red);
+  margin: 1rem;
+}
+
+.bile_pozadi {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.8);
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 9;
+}
+
+.absolutni_element_dimensions {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 10;
+  padding: 10px;
+}
+
+@media (max-width: 500px) {
+  .absolutni_element_dimensions {
+    width: 95%;
+  }
+}
+@media (min-width: 501px) {
+  .absolutni_element_dimensions {
+    width: 495px;
+  }
+}
+.myPrompt {
+  background-color: white;
+  text-align: center;
+  -webkit-box-shadow: 0px 0px 5px grey;
+          box-shadow: 0px 0px 5px grey;
+}
+.myPrompt .nadpis {
+  font-size: 30px;
+  font-weight: bold;
+  color: #f70000;
+  margin-top: 20px;
+}
+.myPrompt .text {
+  margin-top: 15px;
+}
+.myPrompt input {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid lightgrey;
+  background-color: #fff8ea;
+  padding: 0px 10px;
+  font-size: 16px;
+  height: 25px;
+  line-height: 25px;
+  display: block;
+  width: 60%;
+  margin: 20px auto;
+}
+.myPrompt .btn {
+  display: inline-block;
+  background: -webkit-gradient(linear, left top, right top, from(#f58e0e), to(red));
+  background: linear-gradient(to right, #f58e0e, red);
+  border-radius: 6px;
+  padding: 6px 20px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+.myPrompt .close_btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  line-height: 35px;
+  text-align: center;
+  font-size: 40px;
+  background: -webkit-gradient(linear, left top, right top, from(#f58e0e), to(red));
+  background: linear-gradient(to right, #f58e0e, red);
+  color: white;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+
+.spinner_btn_add_ukol::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  border-radius: 3px;
+  top: 0;
+  left: 0;
+  background-color: #f58e0e;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("../res/spinner_mini.gif");
+}
+
+.element_znazornujici_posun_ukolu {
+  border: 2px solid #02ec0e;
+  background-color: #86ff8c;
+  position: absolute;
+  width: 95%;
+  left: 0px;
+}
+
+.login_cont {
+  min-height: calc(100vh - 32px);
+  padding: 16px 0;
+  background-color: white;
+}
+.login_cont .inner {
+  max-width: 600px;
+  margin: 16px auto;
+}
+.login_cont .inner .logo_img {
+  width: 100%;
+  padding-top: 60%;
+  position: relative;
+}
+.login_cont .inner .logo_img .img {
+  width: 95%;
+  height: 95%;
+  position: absolute;
+  top: 2.5%;
+  left: 2.5%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("../res/logo_light.svg");
+  cursor: pointer;
+}
+.login_cont .inner .login_form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 0.8rem;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 0px 4px darkgrey;
+          box-shadow: 0px 0px 4px darkgrey;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-bottom: 2rem;
+}
+.login_cont .inner .login_form h1 {
+  text-align: center;
+  font-family: 'Titillium Web';
+  font-weight: bold;
+  color: #797979;
+  font-size: 20px;
+}
+.login_cont .inner .login_form .error {
+  color: red;
+  font-size: 0.8rem;
+}
+.login_cont .inner .login_form .login_input_cont {
+  white-space: nowrap;
+  padding: 0.8rem 0;
+}
+.login_cont .inner .login_form .login_input_cont .icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1.2rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.login_cont .inner .login_form .login_input_cont input {
+  display: inline-block;
+  vertical-align: middle;
+  height: 1.2rem;
+  padding: 0 0.5rem;
+  width: calc(100% - 1.2rem - 1rem);
+  outline: none;
+  border-left: none;
+  border-bottom: 1px solid #cecdcd;
+  border-right: none;
+  border-top: none;
+}
+.login_cont .inner .login_form .login_input_cont input::-webkit-input-placeholder {
+  color: #cecdcd;
+}
+.login_cont .inner .login_form .login_input_cont input:-ms-input-placeholder {
+  color: #cecdcd;
+}
+.login_cont .inner .login_form .login_input_cont input::-ms-input-placeholder {
+  color: #cecdcd;
+}
+.login_cont .inner .login_form .login_input_cont input::placeholder {
+  color: #cecdcd;
+}
+.login_cont .inner .login_form .login_name_cont .icon {
+  background-image: url("../res/icon_email.png");
+}
+.login_cont .inner .login_form .login_pass_cont .icon {
+  background-image: url("../res/icon_password.png");
+}
+.login_cont .inner .login_form .btn_login {
+  white-space: nowrap;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  text-align: center;
+  position: relative;
+  left: -0.5rem;
+}
+.login_cont .inner .login_form .btn_login .inner {
+  display: inline-block;
+}
+.login_cont .inner .login_form .btn_login .inner .icon {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-position: 50% 50%;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-image: url("../res/arrow_right_login_btn.png");
+  background-color: #f58e0e;
+  border-radius: 50%;
+  position: relative;
+  left: 1rem;
+  border: 2px solid white;
+  -webkit-transition: -webkit-box-shadow 0.2s;
+  transition: -webkit-box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, -webkit-box-shadow 0.2s;
+}
+.login_cont .inner .login_form .btn_login .inner .text {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  width: 5.5rem;
+  height: 1.8rem;
+  line-height: 1.8rem;
+  background: -webkit-gradient(linear, left top, right top, color-stop(33%, #f58e0e), to(red));
+  background: linear-gradient(to right, #f58e0e 33%, red);
+  padding-left: 1.8rem;
+  text-align: left;
+  font-family: 'Titillium Web', sans-serif;
+  color: white;
+  -webkit-transition: -webkit-box-shadow 0.2s;
+  transition: -webkit-box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, -webkit-box-shadow 0.2s;
+}
+.login_cont .inner .login_form .btn_login .inner:hover .icon {
+  -webkit-animation: move_arrow_login_btn 0.2s;
+          animation: move_arrow_login_btn 0.2s;
+  -webkit-box-shadow: 0px 0px 5px grey;
+          box-shadow: 0px 0px 5px grey;
+}
+.login_cont .inner .login_form .btn_login .inner:hover .text {
+  -webkit-box-shadow: 0px 0px 5px grey;
+          box-shadow: 0px 0px 5px grey;
+  text-decoration: underline !important;
+}
+@-webkit-keyframes move_arrow_login_btn {
+  0% {
+    background-position: 50% 50%;
+  }
+  50% {
+    background-position: 30% 50%;
+  }
+  70% {
+    background-position: 60% 50%;
+  }
+  90% {
+    background-position: 55% 50%;
+  }
+  100% {
+    background-position: 50% 50%;
+  }
+}
+@keyframes move_arrow_login_btn {
+  0% {
+    background-position: 50% 50%;
+  }
+  50% {
+    background-position: 30% 50%;
+  }
+  70% {
+    background-position: 60% 50%;
+  }
+  90% {
+    background-position: 55% 50%;
+  }
+  100% {
+    background-position: 50% 50%;
+  }
+}
+.login_cont .inner a {
+  display: block;
+  text-align: center;
+  font-weight: 300;
+  color: #929292;
+}
+
+.register_cont {
+  min-height: calc(100vh - 2rem);
+  padding: 1rem 0;
+  background-color: white;
+}
+.register_cont .inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.register_cont .inner .logo_img {
+  width: 100%;
+  padding-top: 60%;
+  position: relative;
+}
+.register_cont .inner .logo_img .img {
+  width: 95%;
+  height: 95%;
+  position: absolute;
+  top: 2.5%;
+  left: 2.5%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("../res/logo_light.svg");
+  cursor: pointer;
+}
+.register_cont .inner .register_form {
+  border-radius: 4px;
+}
+.register_cont .inner .register_form h1 {
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #797979;
+}
+.register_cont .inner .register_form .text_o_reg_emailu {
+  max-width: 500px;
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 3rem;
+  font-weight: 300;
+}
+.register_cont .inner .register_form .kontainer_formulare {
+  width: calc(100% - 2rem);
+  padding: 1rem;
+}
+.register_cont .inner .register_form .kontainer_formulare .polozka {
+  margin: 2rem 0;
+}
+.register_cont .inner .register_form .kontainer_formulare .polozka .label {
+  display: block;
+  padding-left: 2rem;
+}
+.register_cont .inner .register_form .kontainer_formulare .polozka .label .error {
+  color: red;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+.register_cont .inner .register_form .kontainer_formulare .polozka input {
+  display: block;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #d0d0d0;
+  background-color: #fffaf2;
+  padding: 0.6rem;
+  width: calc(100% - 1.2rem);
+  outline: none;
+}
+.register_cont .inner .register_form .kontainer_formulare .btn_register {
+  white-space: nowrap;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  text-align: center;
+  position: relative;
+  left: -0.5rem;
+}
+.register_cont .inner .register_form .kontainer_formulare .btn_register .inner {
+  display: inline-block;
+}
+.register_cont .inner .register_form .kontainer_formulare .btn_register .inner .icon {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-position: 50% 50%;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-image: url("../res/arrow_right_login_btn.png");
+  background-color: #f58e0e;
+  border-radius: 50%;
+  position: relative;
+  left: 1rem;
+  border: 2px solid white;
+  -webkit-transition: -webkit-box-shadow 0.2s;
+  transition: -webkit-box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, -webkit-box-shadow 0.2s;
+}
+.register_cont .inner .register_form .kontainer_formulare .btn_register .inner .text {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 20px;
+  width: 5.5rem;
+  height: 1.8rem;
+  line-height: 1.8rem;
+  background: -webkit-gradient(linear, left top, right top, color-stop(33%, #f58e0e), to(red));
+  background: linear-gradient(to right, #f58e0e 33%, red);
+  padding-left: 1.8rem;
+  text-align: left;
+  font-family: 'Titillium Web', sans-serif;
+  color: white;
+  -webkit-transition: -webkit-box-shadow 0.2s;
+  transition: -webkit-box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, -webkit-box-shadow 0.2s;
+}
+.register_cont .inner .register_form .kontainer_formulare .btn_register .inner:hover .icon {
+  -webkit-animation: move_arrow_login_btn 0.2s;
+          animation: move_arrow_login_btn 0.2s;
+  -webkit-box-shadow: 0px 0px 5px grey;
+          box-shadow: 0px 0px 5px grey;
+}
+.register_cont .inner .register_form .kontainer_formulare .btn_register .inner:hover .text {
+  -webkit-box-shadow: 0px 0px 5px grey;
+          box-shadow: 0px 0px 5px grey;
+  text-decoration: underline !important;
+}
+@keyframes move_arrow_login_btn {
+  0% {
+    background-position: 50% 50%;
+  }
+  50% {
+    background-position: 30% 50%;
+  }
+  70% {
+    background-position: 60% 50%;
+  }
+  90% {
+    background-position: 55% 50%;
+  }
+  100% {
+    background-position: 50% 50%;
+  }
+}
+.app_main_body {
+  background-color: white;
+}
+.app_main_body .app_main_body_inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #fbfbfb;
+  -webkit-box-shadow: 0px 0px 3px lightgrey;
+          box-shadow: 0px 0px 3px lightgrey;
+  min-height: calc(100vh - 38px);
+}
+.app_main_body .app_main_body_inner .horni_lista_1 {
+  height: 90px;
+  position: relative;
+}
+@media (max-width: 800px) {
+  .app_main_body .app_main_body_inner .horni_lista_1 .hamburger {
+    display: block;
+  }
+  .app_main_body .app_main_body_inner .horni_lista_1 .logo {
+    left: 35px;
+  }
+}
+@media (min-width: 801px) {
+  .app_main_body .app_main_body_inner .horni_lista_1 .hamburger {
+    display: none;
+  }
+  .app_main_body .app_main_body_inner .horni_lista_1 .logo {
+    left: 0;
+  }
+}
+.app_main_body .app_main_body_inner .horni_lista_1 .hamburger {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 30px;
+  left: 2px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 20px;
+}
+.app_main_body .app_main_body_inner .horni_lista_1 .hamburger .el {
+  width: 55%;
+  height: 5%;
+  position: absolute;
+  left: 22.5%;
+  background-color: black;
+  -webkit-transition: all 0.15s;
+  transition: all 0.15s;
+}
+.app_main_body .app_main_body_inner .horni_lista_1 .hamburger .el_1 {
+  top: 27.75%;
+}
+.app_main_body .app_main_body_inner .horni_lista_1 .hamburger .el_2 {
+  top: 47.75%;
+  opacity: 1;
+}
+.app_main_body .app_main_body_inner .horni_lista_1 .hamburger .el_3 {
+  top: 67.75%;
+}
+.app_main_body .app_main_body_inner .horni_lista_1 .hamburger.otevrene .el_1 {
+  top: 47.75%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.app_main_body .app_main_body_inner .horni_lista_1 .hamburger.otevrene .el_2 {
+  opacity: 0;
+}
+.app_main_body .app_main_body_inner .horni_lista_1 .hamburger.otevrene .el_3 {
+  top: 47.75%;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+.app_main_body .app_main_body_inner .horni_lista_1 .logo {
+  width: 140px;
+  height: 90px;
+  position: absolute;
+  top: 0;
+  background-image: url("../res/logo_light.svg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.app_main_body .app_main_body_inner .horni_lista_1 .btn_logout {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 50px;
+  width: 50px;
+  background-color: #fff2f2;
+  -webkit-box-shadow: 0px 0px 3px #ffa9a9 inset;
+          box-shadow: 0px 0px 3px #ffa9a9 inset;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.app_main_body .app_main_body_inner .horni_lista_1 .btn_logout .obrazek {
+  width: 50px;
+  height: 35px;
+  background-image: url("../res/switch_off_img.png");
+  background-position: center;
+  background-size: 60%;
+  background-repeat: no-repeat;
+}
+.app_main_body .app_main_body_inner .horni_lista_1 .btn_logout .text {
+  width: 50px;
+  height: 15px;
+  color: #ff9191;
+  line-height: 15px;
+  font-size: 13px;
+  text-align: center;
+  overflow: hidden;
+}
+.app_main_body .app_main_body_inner .horni_lista_1 .btn_logout:hover {
+  background-color: #fddcdc;
+  -webkit-box-shadow: 0px 0px 3px #ff5050 inset;
+          box-shadow: 0px 0px 3px #ff5050 inset;
+}
+.app_main_body .app_main_body_inner .rada_2 {
+  position: relative;
+}
+@media (max-width: 800px) {
+  .app_main_body .app_main_body_inner .rada_2 .menu {
+    position: absolute;
+    z-index: 3;
+    right: 100%;
+    display: block;
+    width: 90%;
+  }
+  .app_main_body .app_main_body_inner .rada_2 .menu.otevrene {
+    right: 10%;
+  }
+  .app_main_body .app_main_body_inner .rada_2 .hlavni_obsah {
+    width: 100%;
+    display: block;
+  }
+}
+@media (min-width: 801px) {
+  .app_main_body .app_main_body_inner .rada_2 .menu {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 240px;
+    right: 0%;
+  }
+  .app_main_body .app_main_body_inner .rada_2 .hlavni_obsah {
+    display: inline-block;
+    width: calc(100% - 240px);
+    vertical-align: top;
+  }
+}
+.app_main_body .app_main_body_inner .rada_2 .menu {
+  background-color: #ffffff;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  min-height: calc(100vh - 168px);
+  -webkit-box-shadow: 0px 0px 4px lightgrey inset;
+          box-shadow: 0px 0px 4px lightgrey inset;
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .user_info {
+  padding: 20px 10px 0px 10px;
+  text-align: center;
+  color: grey;
+  cursor: default;
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .menu_nadpis {
+  font-weight: bold;
+  color: #f58e0e;
+  cursor: default;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  margin-top: 20px;
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .polozka_menu {
+  padding: 5px 6px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .kontainer_seznamu_menu .text_zadny_senam {
+  padding-left: 15px;
+  color: grey;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .kontainer_seznamu_menu .polozka_menu {
+  padding-left: 10px;
+  color: #bbbbbb;
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .kontainer_seznamu_menu .polozka_menu.otevrena {
+  font-weight: bold;
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .kontainer_seznamu_menu .polozka_menu.odkaz {
+  color: black;
+  cursor: pointer;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  line-height: 1rem;
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .kontainer_seznamu_menu .polozka_menu.odkaz:hover {
+  text-decoration: underline;
+  background-color: #ffd392;
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .kontainer_seznamu_menu .btn_pridat_seznam {
+  text-align: left;
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .kontainer_seznamu_menu .btn_pridat_seznam .btn {
+  display: inline-block;
+  background-color: #f58e0e;
+  padding: 2px 6px;
+  color: white;
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .nastaveni_polozka {
+  color: black;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  padding-left: 15px;
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .nastaveni_polozka .odkaz_nastaveni {
+  text-decoration: underline;
+  color: #f58e0e;
+  cursor: pointer;
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .nastaveni_polozka .odkaz_nastaveni:hover {
+  color: blue;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah {
+  min-height: calc(100vh - 168px);
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .zadny_seznam_kont {
+  padding-left: 20px;
+  padding-top: 20px;
+  color: black;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .nadpis_seznamu {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #3a3a3a;
+  padding: 10px 18px;
+  line-height: 1.6rem;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .konteiner_tlacitek_akci {
+  padding: 6px 18px;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .konteiner_tlacitek_akci .btn {
+  display: inline-block;
+  background-color: #ffebdb;
+  color: #c58900;
+  min-width: 30px;
+  height: 30px;
+  -webkit-box-shadow: 0px 0px 5px #ffc89c inset;
+          box-shadow: 0px 0px 5px #ffc89c inset;
+  white-space: nowrap;
+  overflow: hidden;
+  line-height: 30px;
+  padding: 5px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  margin-left: 3px;
+  vertical-align: middle;
+  margin-top: 5px;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .konteiner_tlacitek_akci .btn:hover {
+  background-color: #fff3e8;
+  -webkit-box-shadow: 0px 0px 5px #ffd2ad inset;
+          box-shadow: 0px 0px 5px #ffd2ad inset;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .konteiner_tlacitek_akci .btn.share {
+  background-image: url("../res/or_btn_share.png");
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .konteiner_tlacitek_akci .btn.delete {
+  background-image: url("../res/or_btn_delete.png");
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .konteiner_tlacitek_akci .btn.refresh {
+  background-image: url("../res/or_btn_refresh.png");
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .konteiner_tlacitek_akci .btn.edit {
+  background-image: url("../res/or_btn_edit.png");
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .konteiner_tlacitek_akci .info_sdilen_s {
+  display: inline-block;
+  vertical-align: middle;
+  height: 35px;
+  background-color: white;
+  margin-left: 4px;
+  padding: 0 5px;
+  -webkit-box-shadow: 0px 0px 4px grey inset;
+          box-shadow: 0px 0px 4px grey inset;
+  margin-top: 5px;
+  white-space: nowrap;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .konteiner_tlacitek_akci .info_sdilen_s .text {
+  line-height: 13px;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  text-align: center;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .konteiner_tlacitek_akci .info_sdilen_s .text .barevny_text {
+  color: #ce8500;
+  font-size: 13px;
+  font-weight: bold;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .konteiner_tlacitek_akci .info_sdilen_s .close_btn {
+  background-color: red;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  line-height: 12px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  margin-left: 11px;
+  font-size: 21px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu {
+  padding: 10px;
+  position: relative;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner {
+  width: 100%;
+  position: relative;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .element_zadna_polozka {
+  color: black;
+  padding: 20px 10px;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu {
+  margin-top: 8px;
+  position: relative;
+  z-index: 2;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .checkbox {
+  display: inline-block;
+  vertical-align: top;
+  width: 30px;
+  height: 30px;
+  -webkit-transition: background-color 0.13s;
+  transition: background-color 0.13s;
+  position: relative;
+  z-index: 2;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .checkbox input[type="checkbox"] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .checkbox .custom_checkbox {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid #f58e0e;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: white;
+  position: relative;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .checkbox input[type="checkbox"]:checked + .custom_checkbox {
+  border: none;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .checkbox input[type="checkbox"]:checked + .custom_checkbox::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  background-color: #f58e0e;
+  -webkit-animation: pop_1 0.18s forwards;
+          animation: pop_1 0.18s forwards;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+@-webkit-keyframes pop_1 {
+  0% {
+    width: 0%;
+    height: 0%;
+    top: 50%;
+    left: 50%;
+  }
+  60% {
+    width: 110%;
+    height: 110%;
+    top: -5%;
+    left: -5%;
+  }
+  80% {
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+  }
+  100% {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+}
+@keyframes pop_1 {
+  0% {
+    width: 0%;
+    height: 0%;
+    top: 50%;
+    left: 50%;
+  }
+  60% {
+    width: 110%;
+    height: 110%;
+    top: -5%;
+    left: -5%;
+  }
+  80% {
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+  }
+  100% {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .checkbox input[type="checkbox"]:checked + .custom_checkbox::after {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  top: 20%;
+  left: 20%;
+  -webkit-transform: rotateX(90deg);
+          transform: rotateX(90deg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("../res/checked.png");
+  -webkit-animation: pop_2 0.18s forwards;
+          animation: pop_2 0.18s forwards;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-delay: 0.18s;
+          animation-delay: 0.18s;
+}
+@-webkit-keyframes pop_2 {
+  0% {
+    -webkit-transform: rotateX(90deg);
+            transform: rotateX(90deg);
+  }
+  100% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+  }
+}
+@keyframes pop_2 {
+  0% {
+    -webkit-transform: rotateX(90deg);
+            transform: rotateX(90deg);
+  }
+  100% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+  }
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .checkbox.spinning .custom_checkbox {
+  border: 1px solid grey;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .checkbox.spinning .custom_checkbox::before {
+  position: absolute;
+  top: 4%;
+  left: 4%;
+  content: '';
+  width: 92%;
+  height: 92%;
+  border-radius: 50%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-left: 2px solid rgba(0, 0, 0, 0);
+  border-right: 2px solid rgba(0, 0, 0, 0);
+  border-top: 2px solid #0099ff;
+  border-bottom: 2px solid #0099ff;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  -webkit-animation: rotace_checkbox_spinneru_1 1.3s infinite;
+          animation: rotace_checkbox_spinneru_1 1.3s infinite;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+@-webkit-keyframes rotace_checkbox_spinneru_1 {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(182.5deg);
+            transform: rotate(182.5deg);
+  }
+  100% {
+    -webkit-transform: rotate(365deg);
+            transform: rotate(365deg);
+  }
+}
+@keyframes rotace_checkbox_spinneru_1 {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(182.5deg);
+            transform: rotate(182.5deg);
+  }
+  100% {
+    -webkit-transform: rotate(365deg);
+            transform: rotate(365deg);
+  }
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .checkbox.spinning .custom_checkbox::after {
+  position: absolute;
+  top: 14%;
+  left: 14%;
+  content: '';
+  width: 72%;
+  height: 72%;
+  border-radius: 50%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-left: 2px solid rgba(0, 0, 0, 0);
+  border-right: 2px solid rgba(0, 0, 0, 0);
+  border-top: 2px solid #0099ff;
+  border-bottom: 2px solid #0099ff;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  -webkit-animation: rotace_checkbox_spinneru_2 1s infinite;
+          animation: rotace_checkbox_spinneru_2 1s infinite;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+@-webkit-keyframes rotace_checkbox_spinneru_2 {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(-182.5deg);
+            transform: rotate(-182.5deg);
+  }
+  100% {
+    -webkit-transform: rotate(-365deg);
+            transform: rotate(-365deg);
+  }
+}
+@keyframes rotace_checkbox_spinneru_2 {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(-182.5deg);
+            transform: rotate(-182.5deg);
+  }
+  100% {
+    -webkit-transform: rotate(-365deg);
+            transform: rotate(-365deg);
+  }
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .icon {
+  display: inline-block;
+  vertical-align: top;
+  width: 30px;
+  height: 30px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  -webkit-transition: background-color 0.13s;
+  transition: background-color 0.13s;
+  position: relative;
+  z-index: 2;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .icon.move_icon {
+  background-image: url("../res/or_btn_move.png");
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .icon.edit_icon {
+  background-image: url("../res/or_btn_edit.png");
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .icon.delete_icon {
+  background-image: url("../res/or_btn_delete.png");
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .textova_cast {
+  display: inline-block;
+  vertical-align: top;
+  width: calc(100% - 150px);
+  min-height: 23px;
+  padding-top: 7px;
+  -webkit-transition: background-color 0.13s;
+  transition: background-color 0.13s;
+  line-height: 16px;
+  font-size: 16px;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .btn_rozbalit {
+  background-image: url("../res/or_btn_sbalit.png");
+  -webkit-transition: background-color 0.13s , -webkit-transform 0.12s;
+  transition: background-color 0.13s , -webkit-transform 0.12s;
+  transition: background-color 0.13s , transform 0.12s;
+  transition: background-color 0.13s , transform 0.12s , -webkit-transform 0.12s;
+  position: relative;
+  z-index: 2;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .btn_rozbalit:hover ~ .textova_cast {
+  background-color: #ffeedb;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .svg_kontainer_car {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  /*
+  z-index: 2; vymazat
+  */
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .svg_kontainer_car line {
+  stroke-width: 2;
+  stroke: #f58e0e;
+  stroke-dasharray: 2;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .submenu {
+  margin-left: 25px;
+  overflow: hidden;
+  -webkit-transition: max-height 0.12s;
+  transition: max-height 0.12s;
+  position: relative;
+  z-index: 2;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .submenu.sbaleny {
+  max-height: 0px;
+  /*
+      max-height je řešeno pouze přes JS,
+          nastaven je kvůli počátečnímu zobrazení úkolů
+      - efekt plynulosti je díky - transition: max-height 0.12s;
+  */
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .blok_ukolu .btn_rozbalit.sbaleny {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .element_pridani_dalsiho_ukolu {
+  text-align: left;
+  margin-top: 11px;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .element_pridani_dalsiho_ukolu div {
+  display: inline-block;
+  vertical-align: middle;
+  width: calc(100% - 70px);
+  text-align: left;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .element_pridani_dalsiho_ukolu div input {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+  width: 100%;
+  height: 25px;
+  line-height: 25px;
+  padding: 0px 12px;
+  outline: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid lightgray;
+  font-size: 16px;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .element_pridani_dalsiho_ukolu div input ::-webkit-input-placeholder {
+  color: lightgray;
+  font-size: 8px;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .element_pridani_dalsiho_ukolu div input :-ms-input-placeholder {
+  color: lightgray;
+  font-size: 8px;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .element_pridani_dalsiho_ukolu div input ::-ms-input-placeholder {
+  color: lightgray;
+  font-size: 8px;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .element_pridani_dalsiho_ukolu div input ::placeholder {
+  color: lightgray;
+  font-size: 8px;
+}
+.app_main_body .app_main_body_inner .rada_2 .hlavni_obsah .otevreny_seznam .kontainer_polozek_seznamu .kontainer_polozek_seznamu_inner .element_pridani_dalsiho_ukolu span {
+  -webkit-box-shadow: 0px 0px 3px grey;
+          box-shadow: 0px 0px 3px grey;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  overflow: hidden;
+  height: 25px;
+  width: 70px;
+  /* background-color: yellow; */
+  background: -webkit-gradient(linear, left top, right top, from(#f58e0e), to(red));
+  background: linear-gradient(to right, #f58e0e, red);
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: white;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 14px;
+  position: relative;
+}
+
+#debug {
+  display: none;
+  z-index: 5;
+  position: fixed;
+  top: 10px;
+  height: 1.4rem;
+  line-height: 1.4rem;
+  white-space: nowrap;
+  width: 90%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.zapomenute_heslo_cont {
+  min-height: calc(100vh - 2rem);
+  padding: 1rem 0;
+  background-color: white;
+}
+.zapomenute_heslo_cont .inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.zapomenute_heslo_cont .inner .logo_img {
+  width: 100%;
+  padding-top: 60%;
+  position: relative;
+}
+.zapomenute_heslo_cont .inner .logo_img .img {
+  width: 95%;
+  height: 95%;
+  position: absolute;
+  top: 2.5%;
+  left: 2.5%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("../res/logo_light.svg");
+  cursor: pointer;
+}
+.zapomenute_heslo_cont .inner .frgt_pswd_form {
+  border-radius: 4px;
+}
+.zapomenute_heslo_cont .inner .frgt_pswd_form h1 {
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #797979;
+}
+.zapomenute_heslo_cont .inner .frgt_pswd_form .text_o_reg_emailu {
+  max-width: 500px;
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 3rem;
+  font-weight: 300;
+}
+.zapomenute_heslo_cont .inner .frgt_pswd_form .kontainer_formulare {
+  width: calc(100% - 2rem);
+  padding: 1rem;
+}
+.zapomenute_heslo_cont .inner .frgt_pswd_form .kontainer_formulare .polozka {
+  margin: 2rem 0;
+}
+.zapomenute_heslo_cont .inner .frgt_pswd_form .kontainer_formulare .polozka .label {
+  display: block;
+  padding-left: 2rem;
+}
+.zapomenute_heslo_cont .inner .frgt_pswd_form .kontainer_formulare .polozka .label .error {
+  color: red;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+.zapomenute_heslo_cont .inner .frgt_pswd_form .kontainer_formulare .polozka input {
+  display: block;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #d0d0d0;
+  background-color: #fffaf2;
+  padding: 0.6rem;
+  width: calc(100% - 1.2rem);
+  outline: none;
+}
+.zapomenute_heslo_cont .inner .frgt_pswd_form .kontainer_formulare .btn_register {
+  white-space: nowrap;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  text-align: center;
+  position: relative;
+  left: -0.5rem;
+}
+.zapomenute_heslo_cont .inner .frgt_pswd_form .kontainer_formulare .btn_register .inner {
+  display: inline-block;
+}
+.zapomenute_heslo_cont .inner .frgt_pswd_form .kontainer_formulare .btn_register .inner .icon {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-position: 50% 50%;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-image: url("../res/arrow_right_login_btn.png");
+  background-color: #f58e0e;
+  border-radius: 50%;
+  position: relative;
+  left: 1rem;
+  border: 2px solid white;
+  -webkit-transition: -webkit-box-shadow 0.2s;
+  transition: -webkit-box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, -webkit-box-shadow 0.2s;
+}
+.zapomenute_heslo_cont .inner .frgt_pswd_form .kontainer_formulare .btn_register .inner .text {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 20px;
+  width: 5.5rem;
+  height: 1.8rem;
+  line-height: 1.8rem;
+  background: -webkit-gradient(linear, left top, right top, color-stop(33%, #f58e0e), to(red));
+  background: linear-gradient(to right, #f58e0e 33%, red);
+  padding-left: 1.8rem;
+  text-align: left;
+  font-family: 'Titillium Web', sans-serif;
+  color: white;
+  -webkit-transition: -webkit-box-shadow 0.2s;
+  transition: -webkit-box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, -webkit-box-shadow 0.2s;
+}
+.zapomenute_heslo_cont .inner .frgt_pswd_form .kontainer_formulare .btn_register .inner:hover .icon {
+  -webkit-animation: move_arrow_login_btn 0.2s;
+          animation: move_arrow_login_btn 0.2s;
+  -webkit-box-shadow: 0px 0px 5px grey;
+          box-shadow: 0px 0px 5px grey;
+}
+.zapomenute_heslo_cont .inner .frgt_pswd_form .kontainer_formulare .btn_register .inner:hover .text {
+  -webkit-box-shadow: 0px 0px 5px grey;
+          box-shadow: 0px 0px 5px grey;
+  text-decoration: underline !important;
+}
+@keyframes move_arrow_login_btn {
+  0% {
+    background-position: 50% 50%;
+  }
+  50% {
+    background-position: 30% 50%;
+  }
+  70% {
+    background-position: 60% 50%;
+  }
+  90% {
+    background-position: 55% 50%;
+  }
+  100% {
+    background-position: 50% 50%;
+  }
+}
+.zapomenute_heslo_cont .inner .frgt_pswd_form .obnova_ok_element {
+  text-align: center;
+}
+.zapomenute_heslo_cont .inner .frgt_pswd_form .obnova_ok_element .p {
+  line-height: 1.1rem;
+  padding-top: 40px;
+}
+.zapomenute_heslo_cont .inner .frgt_pswd_form .obnova_ok_element .p2 {
+  padding-top: 40px;
+}
+.zapomenute_heslo_cont .inner .frgt_pswd_form .obnova_ok_element .p2 a {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  background: -webkit-gradient(linear, left top, right top, from(orange), to(red));
+  background: linear-gradient(to right, orange, red);
+  padding: 6px 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 0px 10px grey;
+          box-shadow: 0px 0px 10px grey;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+.zapomenute_heslo_cont .inner .frgt_pswd_form .obnova_ok_element .p2 a:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  position: relative;
+  height: 32px;
+  font-size: 12.8px;
+  text-align: center;
+  padding: 3px;
+  overflow: hidden;
+  margin-top: 40px;
+  color: black;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 80%;
+  border-top: 1px solid #d1d1d1;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 1px;
+}
+
+/*# sourceMappingURL=style.css.map */
