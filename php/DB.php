@@ -8,6 +8,6 @@ $mail_host = '××××××××';
 $mail_usename = "××××××××";
 $mail_pass = '××××××××';
 
-$adresa_webu = 'http://' . $_SERVER['HTTP_HOST'] . '/Todoapp';
+$adresa_webu = 'http://' . $_SERVER['HTTP_HOST'];
 
 ?>
