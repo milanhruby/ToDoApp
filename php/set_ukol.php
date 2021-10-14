@@ -500,9 +500,6 @@ if ($typ == "novy_ukol") {
     $data_pro_opdoved = implode('<!!!>',$data_pro_opdoved);
     
     echo 'ok<!DELIM!>' . $data_pro_opdoved;
-    
-
-    //echo 'přijatá data: id=' . $id_ukolu . ';nova_pozice=' . $nova_pozice . ';stara_pozice=' . $stara_pozice . ';level_ukolu=' . $level_ukolu;
 
 }
 
