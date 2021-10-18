@@ -47,6 +47,10 @@ $posledni_otevreny_seznam = $data_usera['posledni_otevreny_seznam'];
 </head>
 <body lang="<?php echo $jazyk; ?>">
 
+    <?php
+        echo '<script>localStorage[\'lang\'] = "' . $jazyk . '";</script>';
+    ?>
+
     <div class="spinner">
 
     </div>
@@ -84,7 +88,6 @@ $posledni_otevreny_seznam = $data_usera['posledni_otevreny_seznam'];
                     <div class="user_info">
                         <?php
                             echo $user;
-                            echo '<script>console.log("schema:' . $schema . '")</script>';
                         ?>
                     </div>
 
@@ -118,8 +121,9 @@ $posledni_otevreny_seznam = $data_usera['posledni_otevreny_seznam'];
 
                     <div class="nastaveni_polozka">
                         <span string_id="7"><!--string Jazyk--></span>: 
-                        <span class="odkaz_nastaveni" onclick="zmen_jazyk(this)" lang="cz" string_id="8"><!--string cesky--></span>,
-                        <span class="odkaz_nastaveni" onclick="zmen_jazyk(this)" lang="en" string_id="9"><!--string anglicky--></span>
+                        <span class="odkaz_nastaveni_flag" onclick="zmen_jazyk(this)" lang="cz"><!--string cesky--></span><!--
+                     --><span class="odkaz_nastaveni_flag" onclick="zmen_jazyk(this)" lang="en"><!--string anglicky--></span><!--
+                     --><span class="odkaz_nastaveni_flag" onclick="zmen_jazyk(this)" lang="de"><!--string něměcky--></span>
                     </div>
 
                     <div class="nastaveni_polozka">
