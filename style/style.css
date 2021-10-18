@@ -187,6 +187,36 @@
   left: 0px;
 }
 
+.kontainer_vlajek {
+  padding: 15px 3px;
+  text-align: center;
+}
+.kontainer_vlajek .text_jazyk {
+  display: inline-block;
+  vertical-align: middle;
+  height: 20px;
+  line-height: 20px;
+  font-size: 16px;
+}
+.kontainer_vlajek .vlajka_odkaz {
+  display: inline-block;
+  vertical-align: middle;
+  height: 20px;
+  width: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.kontainer_vlajek .vlajka_odkaz.cz {
+  background-image: url("../res/flag_cz.png");
+}
+.kontainer_vlajek .vlajka_odkaz.en {
+  background-image: url("../res/flag_en.png");
+}
+.kontainer_vlajek .vlajka_odkaz.de {
+  background-image: url("../res/flag_de.png");
+}
+
 .login_cont {
   min-height: calc(100vh - 32px);
   padding: 16px 0;
@@ -418,12 +448,24 @@
   font-weight: 900;
   color: #797979;
 }
-.register_cont .inner .register_form .text_o_reg_emailu {
+.register_cont .inner .register_form .kontainer_reg_mail_odeslan {
+  background-color: #caffdd;
+  border-radius: 5px;
+  padding: 10px 0;
+  margin-top: 46px;
+  border: 2px solid #56ff56;
+}
+.register_cont .inner .register_form .kontainer_reg_mail_odeslan h2 {
+  color: #ff3939;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.register_cont .inner .register_form .kontainer_reg_mail_odeslan .text_o_reg_emailu {
   max-width: 500px;
   text-align: center;
   margin: 0 auto;
-  padding-top: 3rem;
-  font-weight: 300;
+  padding-top: 1rem;
 }
 .register_cont .inner .register_form .kontainer_formulare {
   width: calc(100% - 2rem);
@@ -433,10 +475,10 @@
   margin: 2rem 0;
 }
 .register_cont .inner .register_form .kontainer_formulare .polozka .label {
-  display: block;
+  display: inline-block;
   padding-left: 2rem;
 }
-.register_cont .inner .register_form .kontainer_formulare .polozka .label .error {
+.register_cont .inner .register_form .kontainer_formulare .polozka .error {
   color: red;
   font-weight: bold;
   font-size: 0.8rem;
@@ -490,7 +532,6 @@
   display: inline-block;
   vertical-align: middle;
   padding-right: 20px;
-  width: 5.5rem;
   height: 1.8rem;
   line-height: 1.8rem;
   background: -webkit-gradient(linear, left top, right top, color-stop(33%, #f58e0e), to(red));
@@ -645,7 +686,7 @@
   height: 15px;
   color: #ff9191;
   line-height: 15px;
-  font-size: 13px;
+  font-size: 12px;
   text-align: center;
   overflow: hidden;
 }
@@ -772,6 +813,7 @@
       -ms-user-select: none;
           user-select: none;
   padding-left: 15px;
+  margin-bottom: 10px;
 }
 .app_main_body .app_main_body_inner .rada_2 .menu .nastaveni_polozka .odkaz_nastaveni {
   text-decoration: underline;
@@ -780,6 +822,29 @@
 }
 .app_main_body .app_main_body_inner .rada_2 .menu .nastaveni_polozka .odkaz_nastaveni:hover {
   color: blue;
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .nastaveni_polozka .odkaz_nastaveni_flag {
+  height: 16px;
+  width: 30px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .nastaveni_polozka .odkaz_nastaveni_flag[lang="cz"] {
+  background-image: url("../res/flag_cz.png");
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .nastaveni_polozka .odkaz_nastaveni_flag[lang="en"] {
+  background-image: url("../res/flag_en.png");
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .nastaveni_polozka .odkaz_nastaveni_flag[lang="de"] {
+  background-image: url("../res/flag_de.png");
 }
 .app_main_body .app_main_body_inner .rada_2 .hlavni_obsah {
   min-height: calc(100vh - 168px);
@@ -1423,7 +1488,6 @@
   display: inline-block;
   vertical-align: middle;
   padding-right: 20px;
-  width: 5.5rem;
   height: 1.8rem;
   line-height: 1.8rem;
   background: -webkit-gradient(linear, left top, right top, color-stop(33%, #f58e0e), to(red));
@@ -1521,5 +1585,4 @@
           box-sizing: border-box;
   height: 1px;
 }
-
 /*# sourceMappingURL=style.css.map */

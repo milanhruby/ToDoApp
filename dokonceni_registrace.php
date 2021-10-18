@@ -16,7 +16,58 @@ if (isset($_SESSION['user'])) {
     <link rel="shortcut icon" href="/res/fav.png">
     <title>Dokončení registrace</title>
 </head>
-<body>
+<body id="body" lang="">
+
+        <script>
+            if (localStorage['lang'] != "") {
+
+                var nastaveny_jazyk = localStorage['lang'];
+
+                // kontrola, jestli nastavený jazyk existuje
+                var xhttp = new XMLHttpRequest;
+                xhttp.open("POST", "php/set_lang_no_session.php", false);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("typ=kontrola_existence_jazyka&jazyk=" + nastaveny_jazyk); 
+                var odpoved = xhttp.responseText;
+                console.log(odpoved);
+                if (odpoved == "ok") {
+                    document.getElementById('body').setAttribute('lang',nastaveny_jazyk);
+                } else {
+                    document.getElementById('body').setAttribute('lang','cz');
+                    localStorage['lang'] = "cz";
+                }
+            } else {
+                document.getElementById('body').setAttribute('lang','cz');
+                localStorage['lang'] = "cz";
+            }
+
+            window.addEventListener('load',function() {
+
+                // naplň stringy
+
+                // vybrání všech elementů, které mají attribut string_id. Znamená to, že se do nich dopní string dle jazyka
+                var kontainery_stringu = document.querySelectorAll('*[string_id]');
+                var IDs = [];
+                kontainery_stringu.forEach(kontainer => {
+                    IDs.push(kontainer.getAttribute('string_id'));
+                });
+                if (IDs.length > 0) {
+                    IDs = IDs.join(';');
+                    var pole_stringu = vrat_string(IDs);
+                    pole_stringu.forEach(string_par => {
+                        var id = string_par.split('<;DELIM_ELEMENT;>')[0];
+                        var string = string_par.split('<;DELIM_ELEMENT;>')[1];
+                        if (document.querySelector('*[string_id="' + id + '"]') != null) {
+                            document.querySelector('*[string_id="' + id + '"]').innerHTML = string;
+                        }
+                    })
+                }
+
+            });
+
+        </script>
+
+        <h1 string_id="111"><!--Dokončení registrace--></h1>
 
     <?php
         if (isset($_GET['email']) && isset($_GET['token'])) {
@@ -26,7 +77,7 @@ if (isset($_SESSION['user'])) {
             include 'php/DB.php';
             $conn = new mysqli($db_server,$db_user,$db_pass,$db_name);
             if ($conn->connect_errno) {
-                echo '<p>Chyba databáze.</p>';
+                echo '<p string_id="109"></p>'; // Chyba databáze.
             } else {
                 $stmt = $conn->prepare("SELECT * FROM `registracni_tokeny` WHERE `email` = ? AND `token` = ?");
                 $stmt->bind_param("ss",$email,$token);
@@ -35,7 +86,7 @@ if (isset($_SESSION['user'])) {
                 if ($stmt->num_rows < 0) {
                     echo '<p>SQL chyba.</p>';
                 } else if ($vysledek->num_rows == 0) {
-                    echo '<p>Nepodařilo se dokončit registraci. Token nebo email není platný.</p>';
+                    echo '<p string_id="110"></p>'; // Nepodařilo se dokončit registraci. Token nebo email není platný.
                 } else {
                     $stmt->close();
 
@@ -44,13 +95,14 @@ if (isset($_SESSION['user'])) {
                     $email = $data_pred_reg['email'];
                     $token = $data_pred_reg['token'];
                     $heslo = $data_pred_reg['heslo'];
+                    $lang = $data_pred_reg['lang'];
                     $id_pred_reg = (int)$data_pred_reg['id'];
 
-                    $stmt = $conn->prepare("INSERT INTO `users` (`email`,`heslo`) VALUES (?,?) ");
-                    $stmt->bind_param("ss",$email,$heslo);
+                    $stmt = $conn->prepare("INSERT INTO `users` (`email`,`heslo`,`jazyk`) VALUES (?,?,?) ");
+                    $stmt->bind_param("sss",$email,$heslo,$lang);
                     $stmt->execute();
                     if ($stmt->affected_rows < 0) {
-                        echo '<p>Nepodařilo se dokončit registraci. Chyba při vkládání uživatele do databáze</p>'; 
+                        echo '<p string_id="112"></p>';  // Nepodařilo se dokončit registraci. Chyba při vkládání uživatele do databáze
                     } else {
                         $stmt->close();
 
@@ -73,16 +125,18 @@ if (isset($_SESSION['user'])) {
                             echo '<script>window.location.reload();</script>';
                             
                         } else {
-                            echo '<p>Nepodařilo se dokončit registraci. Chyba kontroly vložení uživatele do databáze.</p>';
+                            echo '<p string_id="113"></p>'; // Nepodařilo se dokončit registraci. Chyba kontroly vložení uživatele do databáze.
                         }
                     }
                 }
             }
 
         } else {
-            echo '<p>Nepodařilo se dokončit registraci.</p>';
+            echo '<p string_id="114"></p>'; // Nepodařilo se dokončit registraci.
         }
     ?>
+
+    <script src="js/script.js"></script>
     
 </body>
 </html>

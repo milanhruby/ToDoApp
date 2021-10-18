@@ -647,7 +647,7 @@
   height: 15px;
   color: #ff9191;
   line-height: 15px;
-  font-size: 13px;
+  font-size: 12px;
   text-align: center;
   overflow: hidden;
 }
@@ -774,6 +774,7 @@
       -ms-user-select: none;
           user-select: none;
   padding-left: 15px;
+  margin-bottom: 10px;
 }
 .app_main_body .app_main_body_inner .rada_2 .menu .nastaveni_polozka .odkaz_nastaveni {
   text-decoration: underline;
@@ -782,6 +783,29 @@
 }
 .app_main_body .app_main_body_inner .rada_2 .menu .nastaveni_polozka .odkaz_nastaveni:hover {
   color: blue;
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .nastaveni_polozka .odkaz_nastaveni_flag {
+  height: 16px;
+  width: 30px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .nastaveni_polozka .odkaz_nastaveni_flag[lang="cz"] {
+  background-image: url("../res/flag_cz.png");
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .nastaveni_polozka .odkaz_nastaveni_flag[lang="en"] {
+  background-image: url("../res/flag_en.png");
+}
+.app_main_body .app_main_body_inner .rada_2 .menu .nastaveni_polozka .odkaz_nastaveni_flag[lang="de"] {
+  background-image: url("../res/flag_de.png");
 }
 .app_main_body .app_main_body_inner .rada_2 .hlavni_obsah {
   min-height: calc(100vh - 168px);
@@ -1345,4 +1369,5 @@
   box-sizing: border-box;
   height: 1px;
 }
+
 /*# sourceMappingURL=style_dark.css.map */

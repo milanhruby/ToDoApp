@@ -188,6 +188,41 @@ $sirka_mobilniho_menu: 90%;
     left: 0px;
 }
 
+.kontainer_vlajek {
+    padding: 15px 3px;
+    text-align: center;
+
+    .text_jazyk {
+        display: inline-block;
+        vertical-align: middle;
+        height: 20px;
+        line-height: 20px;
+        font-size: 16px;
+    }
+
+    .vlajka_odkaz {
+        display: inline-block;
+        vertical-align: middle;
+        height: 20px;
+        width: 30px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    .vlajka_odkaz.cz {
+        background-image: url('../res/flag_cz.png');
+    }
+
+    .vlajka_odkaz.en {
+        background-image: url('../res/flag_en.png');
+    }
+
+    .vlajka_odkaz.de {
+        background-image: url('../res/flag_de.png');
+    }
+}
+
 .login_cont {
 
     min-height: calc(100vh - 32px);
@@ -406,12 +441,26 @@ $sirka_mobilniho_menu: 90%;
                 color: #797979;
             }
 
-            .text_o_reg_emailu {
-                max-width: 500px;
-                text-align: center;
-                margin: 0 auto;
-                padding-top: 3rem;
-                font-weight: 300;
+            .kontainer_reg_mail_odeslan {
+                background-color: #caffdd;
+                border-radius: 5px;
+                padding: 10px 0;
+                margin-top: 46px;
+                border: 2px solid #56ff56;
+
+                h2 {
+                    color: #ff3939;
+                    text-align: center;
+                    font-size: 1.3rem;
+                    font-weight: bold;
+                }
+
+                .text_o_reg_emailu {
+                    max-width: 500px;
+                    text-align: center;
+                    margin: 0 auto;
+                    padding-top: 1rem;
+                }
             }
 
             .kontainer_formulare {
@@ -423,14 +472,14 @@ $sirka_mobilniho_menu: 90%;
                     margin: 2rem 0;
 
                     .label {
-                        display: block;
-                        padding-left: 2rem;
+                        display: inline-block;
+                        padding-left: 2rem;   
+                    }
 
-                        .error {
-                            color: red;
-                            font-weight: bold;
-                            font-size: 0.8rem;
-                        }
+                    .error {
+                        color: red;
+                        font-weight: bold;
+                        font-size: 0.8rem;
                     }
 
                     input {
@@ -482,7 +531,6 @@ $sirka_mobilniho_menu: 90%;
                             display: inline-block;
                             vertical-align: middle;
                             padding-right: 20px;
-                            width: 5.5rem;
                             height: 1.8rem;
                             line-height: 1.8rem;
                             background: linear-gradient(to right, $oranzova 33%, red);
@@ -636,7 +684,7 @@ $sirka_mobilniho_menu: 90%;
                     height: 15px;
                     color: #ff9191;
                     line-height: 15px;
-                    font-size: 13px;
+                    font-size: 12px;
                     text-align: center;
                     overflow: hidden;
                 }
@@ -765,6 +813,7 @@ $sirka_mobilniho_menu: 90%;
                     color: black;
                     user-select: none;
                     padding-left: 15px;
+                    margin-bottom: 10px;
 
                     .odkaz_nastaveni {
                         text-decoration: underline;
@@ -774,6 +823,28 @@ $sirka_mobilniho_menu: 90%;
 
                     .odkaz_nastaveni:hover {
                         color: blue;
+                    }
+
+                    .odkaz_nastaveni_flag {
+                        height: 16px;
+                        width: 30px;
+                        background-position: center;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        user-select: none;
+                        cursor: pointer;
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+
+                    .odkaz_nastaveni_flag[lang="cz"] {
+                        background-image: url('../res/flag_cz.png');
+                    }
+                    .odkaz_nastaveni_flag[lang="en"] {
+                        background-image: url('../res/flag_en.png');
+                    }
+                    .odkaz_nastaveni_flag[lang="de"] {
+                        background-image: url('../res/flag_de.png');
                     }
                 }
                 
@@ -1346,7 +1417,6 @@ $sirka_mobilniho_menu: 90%;
                             display: inline-block;
                             vertical-align: middle;
                             padding-right: 20px;
-                            width: 5.5rem;
                             height: 1.8rem;
                             line-height: 1.8rem;
                             background: linear-gradient(to right, $oranzova 33%, red);

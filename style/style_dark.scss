@@ -638,7 +638,7 @@ $sirka_mobilniho_menu: 90%;
                     height: 15px;
                     color: #ff9191;
                     line-height: 15px;
-                    font-size: 13px;
+                    font-size: 12px;
                     text-align: center;
                     overflow: hidden;
                 }
@@ -767,6 +767,7 @@ $sirka_mobilniho_menu: 90%;
                     color: white;
                     user-select: none;
                     padding-left: 15px;
+                    margin-bottom: 10px;
 
                     .odkaz_nastaveni {
                         text-decoration: underline;
@@ -776,6 +777,28 @@ $sirka_mobilniho_menu: 90%;
 
                     .odkaz_nastaveni:hover {
                         color: blue;
+                    }
+
+                    .odkaz_nastaveni_flag {
+                        height: 16px;
+                        width: 30px;
+                        background-position: center;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        user-select: none;
+                        cursor: pointer;
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+
+                    .odkaz_nastaveni_flag[lang="cz"] {
+                        background-image: url('../res/flag_cz.png');
+                    }
+                    .odkaz_nastaveni_flag[lang="en"] {
+                        background-image: url('../res/flag_en.png');
+                    }
+                    .odkaz_nastaveni_flag[lang="de"] {
+                        background-image: url('../res/flag_de.png');
                     }
                 }
                 

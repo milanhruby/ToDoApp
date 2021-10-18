@@ -14,8 +14,41 @@ if (isset($_SESSION['user'])) {
     <link rel="shortcut icon" href="/res/fav.png">
     <title>ToDo app - register</title>
 </head>
-<body>
-<div class="register_cont">
+
+<body id="body" lang="">
+
+        <script>
+            if (localStorage['lang'] != "") {
+
+                var nastaveny_jazyk = localStorage['lang'];
+
+                // kontrola, jestli nastavený jazyk existuje
+                var xhttp = new XMLHttpRequest;
+                xhttp.open("POST", "php/set_lang_no_session.php", false);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("typ=kontrola_existence_jazyka&jazyk=" + nastaveny_jazyk); 
+                var odpoved = xhttp.responseText;
+                console.log(odpoved);
+                if (odpoved == "ok") {
+                    document.getElementById('body').setAttribute('lang',nastaveny_jazyk);
+                } else {
+                    document.getElementById('body').setAttribute('lang','cz');
+                    localStorage['lang'] = "cz";
+                }
+            } else {
+                document.getElementById('body').setAttribute('lang','cz');
+                localStorage['lang'] = "cz";
+            }
+
+        </script>
+
+    <div class="kontainer_vlajek">
+        <span string_id="108" class="text_jazyk"><!--jazyk--></span>
+        <a href="" class="vlajka_odkaz cz" onclick="localStorage['lang'] = 'cz'"></a>
+        <a href="" class="vlajka_odkaz en" onclick="localStorage['lang'] = 'en'"></a>
+        <a href="" class="vlajka_odkaz de" onclick="localStorage['lang'] = 'de'"></a>
+    </div>
+    <div class="register_cont">
         <div class="inner">
 
             <div class="logo_img">
@@ -25,7 +58,7 @@ if (isset($_SESSION['user'])) {
             </div>
 
             <div class="register_form">
-                <h1>Registrace</h1>
+                <h1 string_id="93"><!--Registrace--></h1>
 
                 <form class="kontainer_formulare">
 
@@ -35,12 +68,12 @@ if (isset($_SESSION['user'])) {
                     </div>
 
                     <div class="polozka">
-                        <span class="label">heslo: <span class="error" id="heslo_error"></span></span>
+                        <span class="label" string_id="103"><!--heslo:--> </span><span class="error" id="heslo_error"></span>
                         <input type="password" autocomplete="new-password" id="heslo">
                     </div>
 
                     <div class="polozka">
-                        <span class="label">heslo znovu:</span>
+                        <span class="label" string_id="94">heslo znovu:</span>
                         <input type="password" autocomplete="new-password" id="heslo_conf">
                     </div>
 
@@ -49,8 +82,8 @@ if (isset($_SESSION['user'])) {
                             <div class="icon">
                             
                             </div>
-                            <div class="text">
-                                Registrovat
+                            <div class="text" string_id="85">
+                                <!--Registrovat-->
                             </div>
                         </div>
                     </div>
@@ -59,7 +92,7 @@ if (isset($_SESSION['user'])) {
                 
             </div>
 
-            <p style="text-align: center">Máte již učet? <a href="login.php" style="font-weight: 300;color: #929292;">Přihlaste se</a></p>
+            <p style="text-align: center" id="mate_jiz_ucet"><span string_id="95"><!--Máte již učet?--></span> <a href="login.php" style="font-weight: 300;color: #929292;" string_id="96"><!--Přihlaste se--></a></p>
 
         </div>
     </div>

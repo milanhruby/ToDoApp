@@ -14,7 +14,40 @@ if (isset($_SESSION['user'])) {
     <link rel="shortcut icon" href="/res/fav.png">
     <title>ToDo app - login</title>
 </head>
-<body>
+
+<body id="body" lang="">
+
+    <script>
+        if (localStorage['lang'] != "") {
+
+            var nastaveny_jazyk = localStorage['lang'];
+
+            // kontrola, jestli nastavený jazyk existuje
+            var xhttp = new XMLHttpRequest;
+            xhttp.open("POST", "php/set_lang_no_session.php", false);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("typ=kontrola_existence_jazyka&jazyk=" + nastaveny_jazyk); 
+            var odpoved = xhttp.responseText;
+            console.log(odpoved);
+            if (odpoved == "ok") {
+                document.getElementById('body').setAttribute('lang',nastaveny_jazyk);
+            } else {
+                document.getElementById('body').setAttribute('lang','cz');
+                localStorage['lang'] = "cz";
+            }
+        } else {
+            document.getElementById('body').setAttribute('lang','cz');
+            localStorage['lang'] = "cz";
+        }
+
+    </script>
+
+    <div class="kontainer_vlajek">
+        <span string_id="108" class="text_jazyk"><!--jazyk--></span>
+        <a href="" class="vlajka_odkaz cz" onclick="localStorage['lang'] = 'cz'"></a>
+        <a href="" class="vlajka_odkaz en" onclick="localStorage['lang'] = 'en'"></a>
+        <a href="" class="vlajka_odkaz de" onclick="localStorage['lang'] = 'de'"></a>
+    </div>
 
     <div class="login_cont">
         <div class="inner">
@@ -26,7 +59,7 @@ if (isset($_SESSION['user'])) {
             </div>
 
             <div class="login_form">
-                <h1>Login</h1>
+                <h1 string_id="82">Login</h1>
 
                 <div class="error" id="error_element">
 
@@ -43,7 +76,7 @@ if (isset($_SESSION['user'])) {
                     <span class="icon">
 
                     </span>
-                    <input type="password" placeholder="heslo" id="password_input">
+                    <input type="password" id="password_input">
                 </div>
 
                 <div class="btn_login">
@@ -51,15 +84,15 @@ if (isset($_SESSION['user'])) {
                         <div class="icon">
                         
                         </div>
-                        <div class="text">
+                        <div class="text" string_id="83">
                             Login
                         </div>
                     </div>
                 </div>
             </div>
 
-            <a href="register.php" style="font-size: 1.1rem;font-weight: bold;">Registrovat se</a>
-            <a href="frgt_pass.php" style="margin-top: 1rem;">Zapomenuté heslo</a>
+            <a href="register.php" style="font-size: 1.1rem;font-weight: bold;" string_id="85"><!--Registrovat se--></a>
+            <a href="frgt_pass.php" style="margin-top: 1rem;" string_id="86"><!--Zapomenuté heslo--></a>
 
         </div>
 

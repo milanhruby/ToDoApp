@@ -14,8 +14,42 @@ if (isset($_SESSION['user'])) {
     <link rel="shortcut icon" href="/res/fav.png">
     <title>ToDo app - zapomenuté heslo</title>
 </head>
-<body>
-<div class="zapomenute_heslo_cont">
+
+<body id="body" lang="">
+
+    <script>
+        if (localStorage['lang'] != "") {
+
+            var nastaveny_jazyk = localStorage['lang'];
+
+            // kontrola, jestli nastavený jazyk existuje
+            var xhttp = new XMLHttpRequest;
+            xhttp.open("POST", "php/set_lang_no_session.php", false);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("typ=kontrola_existence_jazyka&jazyk=" + nastaveny_jazyk); 
+            var odpoved = xhttp.responseText;
+            console.log(odpoved);
+            if (odpoved == "ok") {
+                document.getElementById('body').setAttribute('lang',nastaveny_jazyk);
+            } else {
+                document.getElementById('body').setAttribute('lang','cz');
+                localStorage['lang'] = "cz";
+            }
+        } else {
+            document.getElementById('body').setAttribute('lang','cz');
+            localStorage['lang'] = "cz";
+        }
+
+    </script>
+
+    <div class="kontainer_vlajek">  
+        <span string_id="108" class="text_jazyk"><!--jazyk--></span>
+        <a href="" class="vlajka_odkaz cz" onclick="localStorage['lang'] = 'cz'"></a>
+        <a href="" class="vlajka_odkaz en" onclick="localStorage['lang'] = 'en'"></a>
+        <a href="" class="vlajka_odkaz de" onclick="localStorage['lang'] = 'de'"></a>
+    </div>
+
+    <div class="zapomenute_heslo_cont">
         <div class="inner">
 
             <div class="logo_img">
@@ -25,7 +59,7 @@ if (isset($_SESSION['user'])) {
             </div>
 
             <div class="frgt_pswd_form">
-                <h1>Zapomenuté heslo</h1>
+                <h1 string_id="86"><!--Zapomenuté heslo--></h1>
 
                 <div class="kontainer_formulare .form">
 
@@ -39,8 +73,8 @@ if (isset($_SESSION['user'])) {
                             <div class="icon">
                             
                             </div>
-                            <div class="text">
-                                Obnova hesla
+                            <div class="text" string_id="88">
+                                <!--Obnova hesla-->
                             </div>
                         </div>
                     </div>
