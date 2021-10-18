@@ -33,8 +33,26 @@ if ($rad > 0) {
     echo 'chyba:' . $smtp->error . '.';
     exit();
 } else {
-    echo 'notok';
-    exit();
+    $smtp->close();
+    // user nenalezen, zkontroluje se, jestli nemá nedokončenou registraci
+
+    $smtp2 = $conn->prepare("SELECT * FROM registracni_tokeny where email = ?");
+    $smtp2->bind_param("s",$email);
+    $smtp2->execute();
+    $vysl2 = $smtp2->get_result();
+    $rad2 = $vysl2->num_rows;
+
+    if ($rad2 > 0) {
+
+        // v registračních tokenech je záznam. User nedokončil registraci
+        echo 'nedokoncena_registrace';
+        exit();
+    } else {
+
+        // v registračních tokenech není záznam, user prostě jen nebyl nalezen
+        echo 'notok';
+        exit();
+    }   
 }
 
 ?>

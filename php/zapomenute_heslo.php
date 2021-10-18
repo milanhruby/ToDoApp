@@ -108,7 +108,7 @@ $mail = new PHPMailer();
         echo 'ok';
         exit();
     } catch (Exception $e) {
-        echo 'chyba při odesílání emailu s novým heslem (' . $mail->ErrorInfo . ')';
+        echo 'error send mail (' . $mail->ErrorInfo . ')';
     }
 
 

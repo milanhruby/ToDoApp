@@ -21,7 +21,7 @@ if (sizeof($pole) <= 0) {
     // jde je o jeden element
 
     if (!is_numeric($id)) {
-        echo 'ID not number';
+        echo 'ID not number (ID=' . $id . ')';
         exit();
     } else {
         // $id je jedno číslo

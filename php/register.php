@@ -10,6 +10,29 @@ require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
+function vrat_string($id_f,$lang_f) {
+
+    $url = 'https://to-do-app.site/php/vrat_string.php';
+
+    $post_hodnoty = "id=" . $id_f . "&jazyk=" . $lang_f;
+    
+    $ch = curl_init();
+    
+    curl_setopt($ch,CURLOPT_URL, $url);
+    curl_setopt($ch,CURLOPT_POST, true);
+    curl_setopt($ch,CURLOPT_POSTFIELDS, $post_hodnoty);
+    
+    curl_setopt($ch,CURLOPT_RETURNTRANSFER, true); 
+    
+    $result = curl_exec($ch);
+    if (explode("<;;;>",$result)[0] == "ok") {
+        return explode("<;;;>",$result)[1];
+    } else {
+        return 'chyba (' . $result . ")";
+    }
+
+}
+
 $conn = new mysqli($db_server,$db_user,$db_pass,$db_name);
 
 if ($conn->connect_errno) {
@@ -61,6 +84,23 @@ if ($vysledku < 0) {
     exit();
 }
 
+// kontrola jazyka. Pokud není ve strinzích sloupec s vybraným jazykem, nastaví se cz
+    $lang = $_POST['lang'];
+
+    $vysl = $conn->query("SHOW COLUMNS FROM `stringy`");
+    $exituje_jazyk = 0;
+    while ($row = $vysl->fetch_assoc()) {
+        foreach($row as $key => $value){
+            if ($key == "Field" && $value == $lang) {
+                $exituje_jazyk = 1;
+            }
+        }
+    }
+
+    if ($exituje_jazyk != 1) {
+        $lang = "cz";
+    }
+
 // vygenerování tokenu. Token = náhodný string
 $znaky = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 $znakyLength = strlen($znaky);
@@ -79,16 +119,16 @@ $smtp->execute();
 $vysledek = $smtp->get_result();
 $smtp->close();
 if ($vysledek->num_rows == 0) {
-    $sql = "INSERT INTO `registracni_tokeny` (`token`,`heslo`,`email`) values (?,?,?)";
+    $sql = "INSERT INTO `registracni_tokeny` (`token`,`heslo`,`lang`,`email`) values (?,?,?,?)";
 } else if ($vysledek->num_rows < 0) {
     echo 'sql chyba';
     exit();
 } else {
-    $sql = "UPDATE `registracni_tokeny` SET `token` = ? , `heslo` = ? WHERE `email` = ? ";
+    $sql = "UPDATE `registracni_tokeny` SET `token` = ? , `heslo` = ? , `lang` = ? WHERE `email` = ? ";
 }
 
 $smtp = $conn->prepare($sql);
-$smtp->bind_param("sss" , $nahodny_string , $heslo , $email);
+$smtp->bind_param("ssss" , $nahodny_string , $heslo , $lang , $email);
 $smtp->execute();
 $smtp->close();
 // token je vložený, nebo upravený. Zkontroluje se, jestli je v databázi a odešle se userovi
@@ -122,11 +162,12 @@ if (strlen($token) == $delka_retezce) {
         $mail->AddAddress($email); // příjemce
         //$mail->AddAttachment("faktury/file.pdf",'Nové jméno souboru.pdf'); // cesta k odesílanému souboru a volitelný nový název souboru
         $mail->isHTML(true); // !!!!
-        $mail->Subject = "Dokončení registrace ToDo-app";
+
+        $mail->Subject = vrat_string(116,$lang);
         $mail->Body = "
                             <html>
                                 <head>
-                                    <title>Dokončení registrace ToDo-app</title>
+                                    <title>" . vrat_string(116,$lang) . "</title>
                                 </head>
                                 <body>
                                     <style>
@@ -136,12 +177,14 @@ if (strlen($token) == $delka_retezce) {
                                         }
                                     </style>
                                     <p class='text'>
-                                        Registraci do aplikace ToDoApp dokončíte kliknutím na následující odkaz:
+                                        " . vrat_string(117,$lang) . "
                                         <a href='" . $odkaz . "'>" . $odkaz . "</a> 
                                     </p>
                                 </body>
                             </html>
                         ";
+        
+        
         
         $mail->Send();
         echo 'ok';
@@ -161,7 +204,7 @@ if (strlen($token) == $delka_retezce) {
     $stmt->close();
     if ($vysledek->num_rows < 1) {
         // bylo nalezeno 0 seznamů které user vlastní nebo které s ním jsou sdíleny. Vytvoří se tedy ukázkový
-        $nazev_noveho_seznamu = "Můj první ukázkový seznam";
+        $nazev_noveho_seznamu = vrat_string(118,$lang); // string = Můj první ukázkový seznam
         $poradi_noveho_seznamu = 1;
         $stmt = $conn->prepare("INSERT INTO seznamy (nazev_seznamu , poradi , user) VALUES (?,?,?)");
         $stmt->bind_param("sis",$nazev_noveho_seznamu , $poradi_noveho_seznamu , $email);
@@ -183,7 +226,7 @@ if (strlen($token) == $delka_retezce) {
             $stmt->bind_param("isiiiii",$ukol_level , $ukol_text , $ukol_checked , $ukol_rozbaleny , $ukol_parent_seznam , $ukol_parent_ukol , $ukol_pozice);
             
             $ukol_level = 1;
-            $ukol_text = "Registrovat se";
+            $ukol_text = vrat_string(85,$lang); // string = Registrovat se
             $ukol_checked = 1;
             $ukol_rozbaleny = 1;
             $ukol_parent_seznam = $id_vlozeneho_seznamu;
@@ -194,7 +237,7 @@ if (strlen($token) == $delka_retezce) {
             $id_prvniho_ukolu = (int)$stmt->insert_id;
 
             $ukol_level = 2;
-            $ukol_text = "Vyplnit registrační formulář";
+            $ukol_text = vrat_string(119,$lang); // string = Vyplnit registrační formulář
             $ukol_checked = 1;
             $ukol_rozbaleny = 0;
             $ukol_parent_seznam = $id_vlozeneho_seznamu;
@@ -203,7 +246,7 @@ if (strlen($token) == $delka_retezce) {
             $stmt->execute();
 
             $ukol_level = 2;
-            $ukol_text = "Kliknout na odkaz v e-mailu";
+            $ukol_text = vrat_string(120,$lang); // string = Kliknout na odkaz v e-mailu
             $ukol_checked = 1;
             $ukol_rozbaleny = 0;
             $ukol_parent_seznam = $id_vlozeneho_seznamu;
@@ -212,7 +255,7 @@ if (strlen($token) == $delka_retezce) {
             $stmt->execute();
 
             $ukol_level = 2;
-            $ukol_text = "Začít použivát ToDoApp";
+            $ukol_text = vrat_string(121,$lang); // string = Začít používat aplikaci ToDoApp
             $ukol_checked = 1;
             $ukol_rozbaleny = 0;
             $ukol_parent_seznam = $id_vlozeneho_seznamu;
@@ -221,7 +264,7 @@ if (strlen($token) == $delka_retezce) {
             $stmt->execute();
 
             $ukol_level = 1;
-            $ukol_text = "Vytvořit svůj vlastní nový seznam";
+            $ukol_text = vrat_string(122,$lang); // string = Vytvořit svůj vlastní nový seznam
             $ukol_checked = 0;
             $ukol_rozbaleny = 0;
             $ukol_parent_seznam = $id_vlozeneho_seznamu;
@@ -230,7 +273,7 @@ if (strlen($token) == $delka_retezce) {
             $stmt->execute();
 
             $ukol_level = 1;
-            $ukol_text = "Vymazat původní ukázový seznam";
+            $ukol_text = vrat_string(123,$lang); // string = Vymazat původní ukázový seznam
             $ukol_checked = 0;
             $ukol_rozbaleny = 0;
             $ukol_parent_seznam = $id_vlozeneho_seznamu;
@@ -245,7 +288,7 @@ if (strlen($token) == $delka_retezce) {
 
 
 } else {
-    echo 'Chyba, při ukládání registračního kódu';
+    echo vrat_string(124,$lang); // string = Chyba, při ukládání registračního kódu
     exit();
 }
 

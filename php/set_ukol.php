@@ -500,7 +500,7 @@ if ($typ == "novy_ukol") {
     $data_pro_opdoved = implode('<!!!>',$data_pro_opdoved);
     
     echo 'ok<!DELIM!>' . $data_pro_opdoved;
-
+    
 }
 
 
