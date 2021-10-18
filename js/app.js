@@ -132,10 +132,8 @@ window.addEventListener('load',function() {
     xhttp.open("POST", "php/vrat_data.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("typ_dat=sdilene_seznamy"); 
-    
-    
 
-// naplň stringy
+    // naplň stringy
 
     // vybrání všech elementů, které mají attribut string_id. Znamená to, že se do nich dopní string dle jazyka
     var kontainery_stringu = document.querySelectorAll('*[string_id]');
@@ -143,15 +141,17 @@ window.addEventListener('load',function() {
     kontainery_stringu.forEach(kontainer => {
         IDs.push(kontainer.getAttribute('string_id'));
     });
-    IDs = IDs.join(';');
-    var pole_stringu = vrat_string(IDs);
-    pole_stringu.forEach(string_par => {
-        var id = string_par.split('<;DELIM_ELEMENT;>')[0];
-        var string = string_par.split('<;DELIM_ELEMENT;>')[1];
-        if (document.querySelector('*[string_id="' + id + '"]') != null) {
-            document.querySelector('*[string_id="' + id + '"]').innerHTML = string;
-        }
-    });
+    if (IDs.length > 0) {
+        IDs = IDs.join(';');
+        var pole_stringu = vrat_string(IDs);
+        pole_stringu.forEach(string_par => {
+            var id = string_par.split('<;DELIM_ELEMENT;>')[0];
+            var string = string_par.split('<;DELIM_ELEMENT;>')[1];
+            if (document.querySelector('*[string_id="' + id + '"]') != null) {
+                document.querySelector('*[string_id="' + id + '"]').innerHTML = string;
+            }
+        })
+    }
 
 
 
@@ -952,39 +952,6 @@ function zrusit_sdileni_tohoto_seznamu_s(ruseny_user,id_seznamu,close_btn) {
     xhttp.open("POST", "php/uprav_seznam.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("typ_upravy_seznamu=zrus_sdileni&id_seznamu=" + id_seznamu + "&ruseny_email=" + ruseny_user); 
-
-}
-
-function vrat_string(id_stringu) {
-    // Id stringu muže být jedno číslo (vrátí se 1 string), nebo pole ve formě stringu oddělené středníkem
-    // Pokud jde o pole, server vrátí pole (jako string), který vapadá následovně vypadá následovně:
-    // id_stringu<;DELIM_ELEMENT;>string<;DELIM_POLE;>id_stringu<;DELIM_ELEMENT;>string....
-
-
-    var xhttp = new XMLHttpRequest;
-    var jazyk = document.querySelector('body').getAttribute('lang');
-    xhttp.open("POST", "php/vrat_string.php", false);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("id=" + id_stringu + "&jazyk=" + jazyk);
-    var odpoved = xhttp.responseText;
-
-    // zjištení, jestli odpověď byla:
-        // ok<;;;>string, nebo
-        // zadny_string, nebo 
-        // jestli obsahuje <;DELIM_ELEMENT;> = jde o pole
-
-    if (odpoved.split('<;;;>')[0] == "ok") {
-        var string = odpoved.split('<;;;>')[1];
-        return string;
-    } else if (odpoved == "zadny_string") {
-        return "missing string";
-    } else if (odpoved.includes('<;DELIM_ELEMENT;>')) {
-        var data = odpoved.split('<;DELIM_POLE;>');
-        return data;
-    } else  {
-        myalert('chyba: ' + odpoved);
-        return "error";
-    } 
 
 }
 

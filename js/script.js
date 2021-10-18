@@ -145,3 +145,36 @@ function logout() {
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(); 
 }
+
+function vrat_string(id_stringu) {
+    // Id stringu muže být jedno číslo (vrátí se 1 string), nebo pole ve formě stringu oddělené středníkem
+    // Pokud jde o pole, server vrátí pole (jako string), který vapadá následovně vypadá následovně:
+    // id_stringu<;DELIM_ELEMENT;>string<;DELIM_POLE;>id_stringu<;DELIM_ELEMENT;>string....
+
+
+    var xhttp = new XMLHttpRequest;
+    var jazyk = document.querySelector('body').getAttribute('lang');
+    xhttp.open("POST", "php/vrat_string.php", false);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("id=" + id_stringu + "&jazyk=" + jazyk);
+    var odpoved = xhttp.responseText;
+
+    // zjištení, jestli odpověď byla:
+        // ok<;;;>string, nebo
+        // zadny_string, nebo 
+        // jestli obsahuje <;DELIM_ELEMENT;> = jde o pole
+
+    if (odpoved.split('<;;;>')[0] == "ok") {
+        var string = odpoved.split('<;;;>')[1];
+        return string;
+    } else if (odpoved == "zadny_string") {
+        return "missing string";
+    } else if (odpoved.includes('<;DELIM_ELEMENT;>')) {
+        var data = odpoved.split('<;DELIM_POLE;>');
+        return data;
+    } else  {
+        myalert('chyba: ' + odpoved);
+        return "error";
+    } 
+
+}
