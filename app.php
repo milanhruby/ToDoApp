@@ -1,21 +1,34 @@
 <?php
 session_start();
-if (!isset($_SESSION['user'])) {
-    header("Location: login.php");
-} else {
-    // zjistit, jestli user stale existuje
-    $user = $_SESSION['user'];
-}
 
 include 'php/DB.php';
 
 $conn = new mysqli($db_server,$db_user,$db_pass,$db_name);
 
-$smtp = $conn->prepare("SELECT * FROM users where email = ?");
-$smtp->bind_param("s",$user);
-$smtp->execute();
-$vysl = $smtp->get_result();
-$smtp->close();
+function redirect ($page) {
+    header("Location: $page");
+}
+
+if (!isset($_SESSION['user'])) {
+    redirect("login.php");
+    exit();
+} else {
+    $user = $_SESSION['user'];
+
+    // zjistit, jestli user stale existuje
+    $smtp = $conn->prepare("SELECT * FROM users where email = ?");
+    $smtp->bind_param("s",$user);
+    $smtp->execute();
+    $vysl = $smtp->get_result();
+    $smtp->close();
+    if ($vysl->num_rows < 1) {
+        unset($_SESSION['user']);
+        redirect("login.php");
+        exit();
+    }
+
+}
+
 $data_usera = $vysl->fetch_assoc();
 
 $jazyk = $data_usera['jazyk'];
